@@ -16,7 +16,7 @@ const Home = () => {
     const [totalBreakTime, setTotalBreakTime] = useState<number>(5 * 60); // 5 minutes in seconds
 
     const [state, setState] = useState<PomodoroState>("STOPPED")
-    const [type, setType] = useState<PomodoroType>("BREAK")
+    const [type, setType] = useState<PomodoroType>("SESSION")
 
     const [time, setTime] = useState<number>(totalSessionTime) // remaining session time
     const [breakTime, setBreakTime] = useState<number>(totalBreakTime) //remaining break time

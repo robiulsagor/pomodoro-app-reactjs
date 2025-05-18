@@ -2,10 +2,10 @@ import { useState, type Dispatch, type SetStateAction } from "react"
 import { motion } from "motion/react"
 
 type NewTimeFormProps = {
-    setNewTime: Dispatch<SetStateAction<number>>,
+    setNewTime: Dispatch<SetStateAction<number | undefined>>,
     showForm: Dispatch<SetStateAction<boolean>>,
     type: string,
-    setNewBreakTime: Dispatch<SetStateAction<number>>
+    setNewBreakTime: Dispatch<SetStateAction<number | undefined>>,
 }
 
 const NewTimeForm = ({ setNewTime, showForm, type, setNewBreakTime }: NewTimeFormProps) => {
