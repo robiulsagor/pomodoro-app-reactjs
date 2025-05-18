@@ -6,6 +6,8 @@ import { CircularTimer } from "../components/CircularTimer"
 import NewTimeForm from "../components/NewTimeForm"
 import TimeUp from "../components/TimeUp"
 
+import { IoMdCloseCircleOutline } from "react-icons/io";
+
 export type PomodoroState = "RUNNING" | "STOPPED" | "PAUSED"
 type PomodoroType = "SESSION" | "BREAK"
 
@@ -179,23 +181,14 @@ const Home = () => {
 
                     <div className="transition duration-300  ">
                         <div className="flex items-center justify-center transition duration-300">
-                            {/* {
-                                state === "RUNNING" ? (
-                                    <Button state={state} setState={setState} type={type}
-                                    />
-                                ) : 
-                                    <Button state={state} setState={setState} type={type}
-                                    />
-                                
-                            } */}
                             <Button state={state} setState={setState} type={type}
                             />
 
                             {
                                 (state === "STOPPED" && type === "BREAK") && (
-                                    <button className="text-white px-4 py-2 rounded-lg cursor-pointer flex gap-2 capitalize border border-red-800 ml-5 bg-red-600/20 hover:bg-red-700/40 transition"
+                                    <button className="text-white px-4 py-2 rounded-lg cursor-pointer flex items-center gap-2 capitalize border border-red-800 ml-5 bg-red-600/20 hover:bg-red-700/40 transition"
                                         onClick={cancelBreak}>
-                                        Cancel Break
+                                        <IoMdCloseCircleOutline size={20} /> Cancel Break
                                     </button>
                                 )
                             }
