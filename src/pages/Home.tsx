@@ -1,19 +1,22 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import Button from "../components/Button"
 import { motion } from "motion/react"
 import EditName from "../components/EditName"
 import { CircularTimer } from "../components/CircularTimer"
 import NewTimeForm from "../components/NewTimeForm"
+import TimeUp from "../components/TimeUp"
 
 export type PomodoroState = "RUNNING" | "STOPPED" | "PAUSED"
 type PomodoroType = "SESSION" | "BREAK"
 
 const Home = () => {
+    const audioRef = useRef<HTMLAudioElement | null>(null);
+
     const [totalSessionTime, setTotalSessionTime] = useState<number>(25 * 60); // 25 minutes in seconds
     const [totalBreakTime, setTotalBreakTime] = useState<number>(5 * 60); // 5 minutes in seconds
 
     const [state, setState] = useState<PomodoroState>("STOPPED")
-    const [type, setType] = useState<PomodoroType>("SESSION")
+    const [type, setType] = useState<PomodoroType>("BREAK")
 
     const [time, setTime] = useState<number>(totalSessionTime) // remaining session time
     const [breakTime, setBreakTime] = useState<number>(totalBreakTime) //remaining break time
@@ -26,6 +29,8 @@ const Home = () => {
 
     const [showNewTimeForm, setShowNewTimeForm] = useState(false) //custom time adding form
 
+    const [timeUp, setTimeUp] = useState(false) // time up modal
+
     // make the time ticking
     useEffect(() => {
         if (type === "SESSION") {
@@ -35,6 +40,7 @@ const Home = () => {
                         if (prev <= 0) {
                             setType("BREAK")
                             setState("STOPPED")
+                            setTimeUp(true)
                             clearInterval(interval)
                             return breakTime
                         }
@@ -53,6 +59,7 @@ const Home = () => {
                         if (prev <= 0) {
                             setType("SESSION")
                             setState("STOPPED")
+                            setTimeUp(true)
                             clearInterval(interval)
                             return breakTime
                         }
@@ -69,6 +76,21 @@ const Home = () => {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [state, type])
+
+    useEffect(() => {
+        audioRef.current = new Audio('/alarm.wav');
+    }, []); // create only once when component mounts
+
+    useEffect(() => {
+        if (audioRef.current) {
+            if (timeUp) {
+                audioRef.current.play();
+            } else {
+                audioRef.current.pause();
+                audioRef.current.currentTime = 0; // reset to start
+            }
+        }
+    }, [timeUp]);
 
     // hide the form if the name is already set
     useEffect(() => {
@@ -103,6 +125,10 @@ const Home = () => {
             setBreakTime(newBreakTime)
         }
     }, [newBreakTime])
+
+    const cancelBreak = () => {
+        setType("SESSION")
+    }
 
 
     return showNameForm ? <EditName name={name} setName={setName} setForm={setShowNameForm} /> :
@@ -153,18 +179,31 @@ const Home = () => {
 
                     <div className="transition duration-300  ">
                         <div className="flex items-center justify-center transition duration-300">
-                            {
+                            {/* {
                                 state === "RUNNING" ? (
                                     <Button state={state} setState={setState} type={type}
                                     />
-                                ) : (
+                                ) : 
                                     <Button state={state} setState={setState} type={type}
                                     />
+                                
+                            } */}
+                            <Button state={state} setState={setState} type={type}
+                            />
+
+                            {
+                                (state === "STOPPED" && type === "BREAK") && (
+                                    <button className="text-white px-4 py-2 rounded-lg cursor-pointer flex gap-2 capitalize border border-red-800 ml-5 bg-red-600/20 hover:bg-red-700/40 transition"
+                                        onClick={cancelBreak}>
+                                        Cancel Break
+                                    </button>
                                 )
                             }
                         </div>
                     </div>
                 </motion.div>
+
+                {timeUp && <TimeUp name={name} type={type} setTimeUp={setTimeUp} />}
             </div>
         )
 }
