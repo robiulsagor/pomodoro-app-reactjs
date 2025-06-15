@@ -13,6 +13,7 @@ type PomodoroType = "SESSION" | "BREAK"
 
 const Home = () => {
     const audioRef = useRef<HTMLAudioElement | null>(null);
+    const startRef = useRef<number | null>(null) // to track the start time of the session
 
     const [totalSessionTime, setTotalSessionTime] = useState<number>(25 * 60); // 25 minutes in seconds
     const [totalBreakTime, setTotalBreakTime] = useState<number>(5 * 60); // 5 minutes in seconds
@@ -33,51 +34,46 @@ const Home = () => {
 
     const [timeUp, setTimeUp] = useState(false) // time up modal
 
-    // make the time ticking
     useEffect(() => {
-        if (type === "SESSION") {
-            if (state === "RUNNING") {
-                const interval = setInterval(() => {
-                    setTime((prev) => {
-                        if (prev <= 0) {
-                            setType("BREAK")
-                            setState("STOPPED")
-                            setTimeUp(true)
-                            clearInterval(interval)
-                            return breakTime
-                        }
-                        return prev - 1
-                    })
-                }, 1000)
-                return () => clearInterval(interval)
-            } else {
-                setTime(totalSessionTime)
-            }
+        let interval: ReturnType<typeof setInterval>;
+
+        if (state === "RUNNING") {
+            startRef.current = Date.now() // set the start time when the timer starts
+
+            interval = setInterval(() => {
+                const elapsed = Math.floor((Date.now() - (startRef.current || 0)) / 1000); // calculate elapsed time in seconds
+
+                if (type === "SESSION") {
+                    const remaining = totalSessionTime - elapsed
+
+                    if (remaining <= 0) {
+                        clearInterval(interval)
+                        setState("STOPPED")
+                        setType("BREAK")
+                        setTimeUp(true)
+                        setTime(0)
+                    } else {
+                        setTime(remaining)
+                    }
+
+                }
+
+                if (type === "BREAK") {
+                    const remaining = totalBreakTime - elapsed
+                    if (remaining <= 0) {
+                        clearInterval(interval)
+                        setState("STOPPED")
+                        setType("SESSION")
+                        setTimeUp(true)
+                        setBreakTime(0)
+                    } else {
+                        setBreakTime(remaining)
+                    }
+                }
+            }, 1000)
         }
-        else if (type === "BREAK") {
-            if (state === "RUNNING") {
-                const interval = setInterval(() => {
-                    setBreakTime((prev) => {
-                        if (prev <= 0) {
-                            setType("SESSION")
-                            setState("STOPPED")
-                            setTimeUp(true)
-                            clearInterval(interval)
-                            return breakTime
-                        }
-                        return prev - 1
-                    })
-                }, 1000)
-                return () => clearInterval(interval)
-            }
-            else if (state === "PAUSED") {
-                setType("SESSION")
-                setTime(totalSessionTime)
-                setBreakTime(totalBreakTime)
-            }
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [state, type])
+        return () => clearInterval(interval)
+    }, [state, type, totalSessionTime, totalBreakTime])
 
     useEffect(() => {
         audioRef.current = new Audio('/alarm.wav');
