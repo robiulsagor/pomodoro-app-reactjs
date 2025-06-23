@@ -55,7 +55,7 @@ This app helps you boost productivity using the Pomodoro technique — 25 minute
 ---
 
 ## 📂 Folder Structure (Example)
-
+```
 POMODARO APP/
 ├── public/               # Static files
 ├── src/                  # Main source code
@@ -67,7 +67,7 @@ POMODARO APP/
 │   ├── index.css         # Global styles
 │   └── vite-env.d.ts     # Vite environment definitions
 └── README.md             # Project documentation
-
+```
 
 ---
 
