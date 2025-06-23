@@ -57,16 +57,17 @@ This app helps you boost productivity using the Pomodoro technique — 25 minute
 ## 📂 Folder Structure (Example)
 
 POMODARO APP/
-├── public/ # Static files
-├── src/ # Main source code
-│ ├── assets/ # Images, sounds, and SVGs
-│ ├── components/ # Reusable React components
-│ ├── pages/ # Page-level components (e.g., Home.tsx)
-│ ├── App.tsx # Root component
-│ ├── main.tsx # Entry point
-│ ├── index.css # Global styles
-│ └── vite-env.d.ts # Vite environment definitions
-└── README.md
+├── public/               # Static files
+├── src/                  # Main source code
+│   ├── assets/           # Images, sounds, and SVGs
+│   ├── components/       # Reusable React components
+│   ├── pages/            # Page-level components (e.g., Home.tsx)
+│   ├── App.tsx           # Root component
+│   ├── main.tsx          # Entry point
+│   ├── index.css         # Global styles
+│   └── vite-env.d.ts     # Vite environment definitions
+└── README.md             # Project documentation
+
 
 ---
 
@@ -77,6 +78,7 @@ git clone https://github.com/robiulsagor/pomodoro-app-reactjs.git
 cd pomodoro-app-reactjs
 npm install
 npm run dev
+```
 
 🧠 Inspiration
 This app is inspired by the Pomodoro productivity method — a proven technique to stay focused and reduce mental fatigue.
