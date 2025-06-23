@@ -6,11 +6,11 @@ This app helps you boost productivity using the Pomodoro technique — 25 minute
 ---
 
 ## 📸 Preview
-![Timer](./screenshots/timer.png)
-![Time Up](./screenshots/time_up.png)
-![After Session Time](./screenshots/after_session_time.png)
-![Edit Name Modal](./screenshots/edit_name_modal.png)
-![Break Time](./screenshots/break_time.png)
+![Timer](./public/screenshots/timer.png)
+![Time Up](./public/screenshots/time_up.png)
+![After Session Time](./public/screenshots/after_session_time.png)
+![Edit Name Modal](./public/screenshots/edit_name_modal.png)
+![Break Time](./public/screenshots/break_time.png)
 
 ---
 
