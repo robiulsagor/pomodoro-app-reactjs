@@ -1,54 +1,88 @@
-# React + TypeScript + Vite
+# ⏱️ Pomodoro Timer App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A minimal, clean, and customizable **Pomodoro Timer** app built with **ReactJS** with **Typescript**.  
+This app helps you boost productivity using the Pomodoro technique — 25 minutes of focused work followed by short breaks.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📸 Preview
+![Timer](./screenshots/timer.png)
+![Time Up](./screenshots/time_up.png)
+![After Session Time](./screenshots/after_session_time.png)
+![Edit Name Modal](./screenshots/edit_name_modal.png)
+![Break Time](./screenshots/break_time.png)
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🚀 Live Demo
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+🌐 [Try it here](https://pomodoro-app-reactjs.vercel.app/)
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## ✨ Features
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+- 👤 Personalized Welcome:  
+  On first visit, user is asked for their name, e.g.,  
+  _"Welcome to Pomodoro, Sagar!"_
+
+- 📝 Editable User Name:  
+  Click on the name at the top to open a modal and update it anytime.
+
+- ⏳ Timer with Visual Circle:  
+  25-minute work session with a real-time decreasing green progress circle.
+
+- 🔔 Alarm & Popup:  
+  After each session/break, a sound plays and a popup/modal shows "Time is over".
+
+- 🔁 Automatic Cycle:  
+  After 25-minute work session → 5-minute break starts automatically.  
+  After break → new session begins.
+
+- ⚙️ Fully Customizable Time:  
+  You can set your own session and break durations.
+
+---
+
+## 🛠️ Tech Stack
+
+- ReactJS  
+- TypeScript  
+- CSS Modules or TailwindCSS (depending on what you used)  
+- Custom Hooks & React State  
+- Audio API for alerts
+
+---
+
+## 📂 Folder Structure (Example)
+
+POMODARO APP/
+├── public/ # Static files
+├── src/ # Main source code
+│ ├── assets/ # Images, sounds, and SVGs
+│ ├── components/ # Reusable React components
+│ ├── pages/ # Page-level components (e.g., Home.tsx)
+│ ├── App.tsx # Root component
+│ ├── main.tsx # Entry point
+│ ├── index.css # Global styles
+│ └── vite-env.d.ts # Vite environment definitions
+└── README.md
+
+---
+
+## 🔧 Installation
+
+```bash
+git clone https://github.com/robiulsagor/pomodoro-app-reactjs.git
+cd pomodoro-app-reactjs
+npm install
+npm run dev
+
+🧠 Inspiration
+This app is inspired by the Pomodoro productivity method — a proven technique to stay focused and reduce mental fatigue.
+
+🧑‍💻 Author
+Made with ❤️ by [Md Robiul Islam](https://robiulportfolio.vercel.app)
+
+📜 License
+This project is licensed under the MIT License.
