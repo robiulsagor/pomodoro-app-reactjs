@@ -6,10 +6,10 @@ This app helps you boost productivity using the Pomodoro technique — 25 minute
 ---
 
 ## 📸 Preview
+![Edit Name Modal](./public/screenshots/edit_name_modal.png)
 ![Timer](./public/screenshots/timer.png)
 ![Time Up](./public/screenshots/time_up.png)
 ![After Session Time](./public/screenshots/after_session_time.png)
-![Edit Name Modal](./public/screenshots/edit_name_modal.png)
 ![Break Time](./public/screenshots/break_time.png)
 
 ---
@@ -84,7 +84,7 @@ npm run dev
 This app is inspired by the Pomodoro productivity method — a proven technique to stay focused and reduce mental fatigue.
 
 🧑‍💻 Author
-Made with ❤️ by [Md Robiul Islam](https://robiulportfolio.vercel.app)
+Made with ❤️ by [Md Robiul Islam](https://robiulportfolio.vercel.app/#_)
 
 📜 License
 This project is licensed under the MIT License.
