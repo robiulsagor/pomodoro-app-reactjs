@@ -159,7 +159,7 @@ const Home = () => {
                                     <h1>You better take a break now, <br /> {name} </h1>
                                 ) :
                                     (
-                                        <h1>Welcome to Pomodaro, <br />
+                                        <h1>Welcome to Pomodoro, <br />
                                             <span className="cursor-pointer hover:underline" onClick={() => setShowNameForm(true)}> {name || "Guest"}</span>!
                                         </h1>
                                     )
